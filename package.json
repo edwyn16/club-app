@@ -1,0 +1,19 @@
+{
+    "name": "club-lms",
+    "version": "0.1.0",
+    "private": true,
+    "description": "Enterprise SaaS platform for Adventurer and Pathfinder clubs.",
+    "workspaces": [
+        "frontend",
+        "backend"
+    ],
+    "scripts": {
+        "dev:frontend": "npm run dev --workspace frontend",
+        "build:frontend": "npm run build --workspace frontend",
+        "lint:frontend": "npm run lint --workspace frontend"
+    },
+    "engines": {
+        "node": ">=24.0.0",
+        "npm": ">=11.0.0"
+    }
+}
