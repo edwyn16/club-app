@@ -1,8 +1,6 @@
 import app from "./app.js";
-import "dotenv/config";
+import { env } from "./config/index.js";
 
-const PORT = process.env.PORT || 5001;
-
-app.listen(PORT, () => {
-    console.log(`Club LMS API running on port ${PORT}`);
+app.listen(env.PORT, () => {
+    console.log(`Club LMS API running on port ${env.PORT} in ${env.NODE_ENV} mode`);
 })
