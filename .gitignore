@@ -35,3 +35,12 @@ backend/prisma/migrations/**/migration_lock.toml
 *.tmp
 *.temp
 .cache/
+
+# Local AI assistant tooling
+backend/.agents/skills/
+backend/.claude/skills/
+backend/.windsurf/skills/
+backend/skills-lock.json
+
+# Temporary Prisma migration previews
+backend/initial_migration_preview.sql
