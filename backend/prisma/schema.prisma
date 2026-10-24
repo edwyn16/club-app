@@ -12,12 +12,151 @@ datasource db {
   provider = "postgresql"
 }
 
-model Club {
-    id          String      @id @default(uuid()) @db.Uuid
-    name        String
-    createdAt   DateTime @default(now()) @db.Timestamptz(3) @map("created_at")
-    updatedAt   DateTime @updatedAt @db.Timestamptz(3) @map("updated_at")
-    deletedAt   DateTime? @db.Timestamptz(3) @map("deleted_at")
+enum ClubType {
+  ADVENTURER
+  PATHFINDER
+}
 
-    @@map("clubs")
+enum ClubRegistrationStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum ClubSubscriptionStatus {
+  PENDING
+  ACTIVE
+  PAST_DUE
+  SUSPENDED
+  CANCELLED
+  EXPIRED
+}
+
+enum ClubYearStatus {
+  PLANNED
+  ACTIVE
+  CLOSED
+}
+
+model Church {
+  id        String    @id @default(uuid()) @db.Uuid
+  name      String
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz(3)
+  deletedAt DateTime? @map("deleted_at") @db.Timestamptz(3)
+
+  clubs                Club[]
+  registrationRequests ClubRegistrationRequest[]
+
+  @@map("churches")
+}
+
+model Club {
+  id   String   @id @default(uuid()) @db.Uuid
+  name String
+  type ClubType
+
+  churchId String @map("church_id") @db.Uuid
+  church   Church @relation(fields: [churchId], references: [id])
+
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz(3)
+  deletedAt DateTime? @map("deleted_at") @db.Timestamptz(3)
+
+  subscriptions ClubSubscription[]
+  settings      ClubSettings?
+  years         ClubYear[]
+
+  @@index([churchId])
+  @@map("clubs")
+}
+
+model ClubRegistrationRequest {
+  id String @id @default(uuid()) @db.Uuid
+
+  proposedClubName String   @map("proposed_club_name")
+  clubType         ClubType @map("club_type")
+
+  applicantName  String @map("applicant_name")
+  applicantEmail String @map("applicant_email")
+
+  churchId String? @map("church_id") @db.Uuid
+  church   Church? @relation(fields: [churchId], references: [id])
+
+  proposedChurchName String? @map("proposed_church_name")
+
+  status ClubRegistrationStatus @default(PENDING)
+
+  reviewedAt DateTime? @map("reviewed_at") @db.Timestamptz(3)
+  reviewNote String?   @map("review_note")
+
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz(3)
+  deletedAt DateTime? @map("deleted_at") @db.Timestamptz(3)
+
+  @@index([churchId])
+  @@index([status])
+  @@map("club_registration_requests")
+}
+
+model ClubSubscription {
+  id String @id @default(uuid()) @db.Uuid
+
+  clubId String @map("club_id") @db.Uuid
+  club   Club   @relation(fields: [clubId], references: [id])
+
+  status ClubSubscriptionStatus @default(PENDING)
+
+  startDate DateTime  @map("start_date") @db.Date
+  endDate   DateTime? @map("end_date") @db.Date
+
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz(3)
+  deletedAt DateTime? @map("deleted_at") @db.Timestamptz(3)
+
+  @@index([clubId])
+  @@index([status])
+  @@map("club_subscriptions")
+}
+
+model ClubSettings {
+  id String @id @default(uuid()) @db.Uuid
+
+  clubId String @unique @map("club_id") @db.Uuid
+  club   Club   @relation(fields: [clubId], references: [id])
+
+  contactEmail String? @map("contact_email")
+  contactPhone String? @map("contact_phone")
+
+  logoUrl String? @map("logo_url")
+
+  notificationsEnabled Boolean @default(true) @map("notifications_enabled")
+
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz(3)
+  deletedAt DateTime? @map("deleted_at") @db.Timestamptz(3)
+
+  @@map("club_settings")
+}
+
+model ClubYear {
+  id String @id @default(uuid()) @db.Uuid
+
+  clubId String @map("club_id") @db.Uuid
+  club   Club   @relation(fields: [clubId], references: [id])
+
+  name String
+
+  startDate DateTime @map("start_date") @db.Date
+  endDate   DateTime @map("end_date") @db.Date
+
+  status ClubYearStatus @default(PLANNED)
+
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz(3)
+  deletedAt DateTime? @map("deleted_at") @db.Timestamptz(3)
+
+  @@unique([clubId, name])
+  @@index([clubId, status])
+  @@map("club_years")
 }
