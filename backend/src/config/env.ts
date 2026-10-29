@@ -6,6 +6,7 @@ const envSchema = z.object({
     PORT: z.coerce.number().int().positive().default(5001),
     FRONTEND_URL: z.url().default("http://localhost:5173"),
     DATABASE_URL: z.url(),
+    CSRF_SECRET: z.string().min(64),
 });
 
 const parsedEnv = envSchema.safeParse(process.env);
