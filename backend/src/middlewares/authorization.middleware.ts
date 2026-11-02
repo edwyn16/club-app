@@ -5,6 +5,7 @@ import type { AuthenticatedRequest } from "./auth.middleware.js";
 interface AuthorizationOptions {
     permission: string;
     getClubId?: (req: Request) => string | undefined;
+    allowedScopes: readonly string[];
 }
 
 export const requirePermission = (options: AuthorizationOptions) => {
@@ -23,12 +24,12 @@ export const requirePermission = (options: AuthorizationOptions) => {
             const platformAdmin = await prisma.userPlatformRole.findFirst({
                 where: {
                     userId,
-                    deteledAt: null,
+                    deletedAt: null,
                     role: {
                         code: "PLATFORM_ADMIN",
                         scope: "PLATFORM",
                         isActive: true,
-                        detedAt: null,
+                        deletedAt: null,
                     },
                 },
                 select: { id: true },
@@ -60,8 +61,14 @@ export const requirePermission = (options: AuthorizationOptions) => {
                         deletedAt: null,
                         rolePermissions: {
                             some: {
+                                accessScope: {
+                                    in: [...options.allowedScopes].filter(
+                                        (scope) => scope !== "UNASSIGNED" && scope !== "No",
+                                    ),
+                                },
                                 permission: {
                                     code: options.permission,
+                                    deletedAt: null,
                                 },
                             },
                         },
@@ -77,6 +84,7 @@ export const requirePermission = (options: AuthorizationOptions) => {
                 });
                 return;
             }
+            next();
         } catch (error) {
             next(error);
         }
