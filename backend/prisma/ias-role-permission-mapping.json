@@ -1,0 +1,558 @@
+[
+    {
+        "permissionCode": "PLATFORM_APPROVE_CLUB_REGISTRATION",
+        "action": "Approve new club registration",
+        "accessByRole": {
+            "Platform Admin": "Full"
+        }
+    },
+    {
+        "permissionCode": "PLATFORM_MANAGE_SUBSCRIPTION",
+        "action": "Manage subscription",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "Own Club",
+            "Deputy Director": "View"
+        }
+    },
+    {
+        "permissionCode": "PLATFORM_MANAGE_SETTINGS",
+        "action": "Manage platform settings",
+        "accessByRole": {
+            "Platform Admin": "Full"
+        }
+    },
+    {
+        "permissionCode": "CLUB_MANAGE_PROFILE",
+        "action": "Manage club profile",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "Full",
+            "Deputy Director": "Edit",
+            "Clerk": "View"
+        }
+    },
+    {
+        "permissionCode": "CLUB_MANAGE_STAFF_ROLES",
+        "action": "Manage staff roles",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "Full",
+            "Deputy Director": "Limited"
+        }
+    },
+    {
+        "permissionCode": "CLUB_MANAGE_PERMISSIONS",
+        "action": "Manage permissions",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "Full"
+        }
+    },
+    {
+        "permissionCode": "MEMBERS_MANAGE_RECORDS",
+        "action": "Manage member records",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "Full",
+            "Deputy Director": "Full",
+            "Clerk": "Full",
+            "Treasurer": "View Billing",
+            "Counselor": "Own Unit",
+            "Instructor": "Assigned Only",
+            "Drill Instructor": "Assigned Only",
+            "Assistant Drill Instructor": "Assigned Only",
+            "Safe Church / AVG Officer": "Sensitive Only",
+            "Parent": "Own Children",
+            "Pathfinder": "Own",
+            "Adventurer": "Own"
+        }
+    },
+    {
+        "permissionCode": "MEMBERS_MANAGE_FAMILIES",
+        "action": "Manage family records",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "Full",
+            "Deputy Director": "Full",
+            "Clerk": "Full",
+            "Treasurer": "Billing Only",
+            "Counselor": "View Own Unit",
+            "Safe Church / AVG Officer": "Consent/Safety Only",
+            "Parent": "Own Family"
+        }
+    },
+    {
+        "permissionCode": "MEMBERS_MANAGE_REGISTRATION_FORMS",
+        "action": "Manage registration forms",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "Full",
+            "Deputy Director": "Full",
+            "Clerk": "Full",
+            "Counselor": "View Own Unit",
+            "Safe Church / AVG Officer": "Consent/Safety Only",
+            "Parent": "Own Family"
+        }
+    },
+    {
+        "permissionCode": "MEDICAL_VIEW_FULL_RECORDS",
+        "action": "View full medical records",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "Full",
+            "Deputy Director": "Full",
+            "Clerk": "Full",
+            "Safe Church / AVG Officer": "Full",
+            "Parent": "Own Child"
+        }
+    },
+    {
+        "permissionCode": "MEDICAL_VIEW_ALERTS",
+        "action": "View medical alerts",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "Full",
+            "Deputy Director": "Full",
+            "Clerk": "Full",
+            "Counselor": "Own Unit",
+            "Instructor": "Need-to-Know",
+            "Drill Instructor": "Need-to-Know",
+            "Assistant Drill Instructor": "Need-to-Know",
+            "Logistics Coordinator": "Need-to-Know",
+            "Safe Church / AVG Officer": "Full",
+            "Parent": "Own Child"
+        }
+    },
+    {
+        "permissionCode": "MEDICAL_VIEW_ACTIVITY_RESTRICTIONS",
+        "action": "View activity restrictions",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "Full",
+            "Deputy Director": "Full",
+            "Clerk": "Full",
+            "Counselor": "Own Unit",
+            "Instructor": "Need-to-Know",
+            "Drill Instructor": "Need-to-Know",
+            "Assistant Drill Instructor": "Need-to-Know",
+            "Logistics Coordinator": "Need-to-Know",
+            "Safe Church / AVG Officer": "Full",
+            "Parent": "Own Child"
+        }
+    },
+    {
+        "permissionCode": "MEDICAL_VIEW_EMERGENCY_CONTACTS",
+        "action": "View emergency contacts",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "Full",
+            "Deputy Director": "Full",
+            "Clerk": "Full",
+            "Counselor": "Own Unit",
+            "Instructor": "Need-to-Know",
+            "Drill Instructor": "Need-to-Know",
+            "Assistant Drill Instructor": "Need-to-Know",
+            "Logistics Coordinator": "Need-to-Know",
+            "Safe Church / AVG Officer": "Full",
+            "Parent": "Own Child"
+        }
+    },
+    {
+        "permissionCode": "MEDICAL_EDIT_RECORDS_ALERTS",
+        "action": "Edit medical records / alerts",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "Full",
+            "Deputy Director": "Edit",
+            "Clerk": "Edit",
+            "Safe Church / AVG Officer": "Edit Safety Notes",
+            "Parent": "Own Child"
+        }
+    },
+    {
+        "permissionCode": "CURRICULUM_MANAGE_TEMPLATES",
+        "action": "Manage curriculum templates",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "View",
+            "Deputy Director": "View"
+        }
+    },
+    {
+        "permissionCode": "CURRICULUM_MANAGE_CLUB_SETUP",
+        "action": "Manage club curriculum setup",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "Full",
+            "Deputy Director": "Full",
+            "Counselor": "Assigned Class",
+            "Instructor": "Assigned Teaching Area",
+            "Drill Instructor": "Drill Only",
+            "Assistant Drill Instructor": "Drill Only",
+            "Parent": "View Child",
+            "Pathfinder": "View Own",
+            "Adventurer": "View Own"
+        }
+    },
+    {
+        "permissionCode": "CURRICULUM_APPROVE_REQUIREMENTS",
+        "action": "Approve requirements",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "Full",
+            "Deputy Director": "Full",
+            "Counselor": "Own Unit",
+            "Instructor": "Assigned Subject",
+            "Drill Instructor": "Drill Related",
+            "Assistant Drill Instructor": "Drill Related",
+            "Parent": "Parent Approval Only"
+        }
+    },
+    {
+        "permissionCode": "CURRICULUM_OVERRIDE_APPROVALS",
+        "action": "Override approvals",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "Full",
+            "Deputy Director": "Full"
+        }
+    },
+    {
+        "permissionCode": "CURRICULUM_SUBMIT_REQUIREMENTS",
+        "action": "Submit requirements",
+        "accessByRole": {
+            "Parent": "For Child",
+            "Pathfinder": "Own",
+            "Adventurer": "Assisted"
+        }
+    },
+    {
+        "permissionCode": "AWARDS_MANAGE",
+        "action": "Manage awards / honors",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "Full",
+            "Deputy Director": "Full",
+            "Clerk": "Records Only",
+            "Counselor": "Assigned Class",
+            "Instructor": "Assigned Honors",
+            "Parent": "View Child",
+            "Pathfinder": "View/Submit",
+            "Adventurer": "View"
+        }
+    },
+    {
+        "permissionCode": "AWARDS_MARK_COMPLETE",
+        "action": "Mark awards / honors complete",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "Full",
+            "Deputy Director": "Full",
+            "Clerk": "Records Only",
+            "Counselor": "Assigned Class",
+            "Instructor": "Assigned Honors"
+        }
+    },
+    {
+        "permissionCode": "ATTENDANCE_CREATE_SESSION",
+        "action": "Create attendance session",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "Full",
+            "Deputy Director": "Full",
+            "Clerk": "Full",
+            "Counselor": "Own Unit",
+            "Instructor": "Assigned Session",
+            "Drill Instructor": "Drill Sessions",
+            "Assistant Drill Instructor": "Drill Sessions",
+            "Logistics Coordinator": "Event Logistics"
+        }
+    },
+    {
+        "permissionCode": "ATTENDANCE_MARK",
+        "action": "Mark attendance",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "Full",
+            "Deputy Director": "Full",
+            "Clerk": "Full",
+            "Counselor": "Own Unit",
+            "Instructor": "Assigned Session",
+            "Drill Instructor": "Drill Sessions",
+            "Assistant Drill Instructor": "Drill Sessions",
+            "Logistics Coordinator": "Event Logistics"
+        }
+    },
+    {
+        "permissionCode": "ATTENDANCE_VIEW",
+        "action": "View attendance",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "Full",
+            "Deputy Director": "Full",
+            "Clerk": "Full",
+            "Counselor": "Own Unit",
+            "Instructor": "Assigned Session",
+            "Drill Instructor": "Drill Sessions",
+            "Assistant Drill Instructor": "Drill Sessions",
+            "Logistics Coordinator": "Event Logistics",
+            "Safe Church / AVG Officer": "Safety Relevant",
+            "Parent": "Own Child",
+            "Pathfinder": "Own",
+            "Adventurer": "Own"
+        }
+    },
+    {
+        "permissionCode": "EVENTS_CREATE",
+        "action": "Create events",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "Full",
+            "Deputy Director": "Full",
+            "Clerk": "Records Only",
+            "Counselor": "Class/Unit Events",
+            "Instructor": "Teaching Events",
+            "Drill Instructor": "Drill Events",
+            "Assistant Drill Instructor": "Drill Events",
+            "Logistics Coordinator": "Logistics Events",
+            "Media Coordinator": "Media Coverage",
+            "Safe Church / AVG Officer": "Safety Input"
+        }
+    },
+    {
+        "permissionCode": "EVENTS_MANAGE_LOGISTICS_INVENTORY",
+        "action": "Manage logistics / inventory",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "Full",
+            "Deputy Director": "Full",
+            "Treasurer": "Finance View",
+            "Drill Instructor": "Equipment Used",
+            "Assistant Drill Instructor": "Equipment Used",
+            "Logistics Coordinator": "Full",
+            "Media Coordinator": "Media Equipment",
+            "Safe Church / AVG Officer": "Safety Equipment View"
+        }
+    },
+    {
+        "permissionCode": "FINANCE_MANAGE",
+        "action": "Manage finances",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "View",
+            "Deputy Director": "View",
+            "Treasurer": "Full",
+            "Parent": "View Own Invoices"
+        }
+    },
+    {
+        "permissionCode": "FINANCE_RECORD_PAYMENTS",
+        "action": "Record payments",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "View",
+            "Deputy Director": "View",
+            "Treasurer": "Full"
+        }
+    },
+    {
+        "permissionCode": "FINANCE_EXPORT_REPORTS",
+        "action": "Export financial reports",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "Full",
+            "Deputy Director": "View",
+            "Treasurer": "Full"
+        }
+    },
+    {
+        "permissionCode": "MEDIA_MANAGE_LIBRARY",
+        "action": "Manage media library",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "Full",
+            "Deputy Director": "Full",
+            "Counselor": "View Approved",
+            "Media Coordinator": "Full",
+            "Safe Church / AVG Officer": "Consent Oversight",
+            "Parent": "View Approved",
+            "Pathfinder": "View Approved",
+            "Adventurer": "View Approved"
+        }
+    },
+    {
+        "permissionCode": "MEDIA_MANAGE_CONSENT",
+        "action": "Manage media consent records",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "Full",
+            "Deputy Director": "Full",
+            "Clerk": "Full",
+            "Counselor": "View Relevant",
+            "Media Coordinator": "Full",
+            "Safe Church / AVG Officer": "Full",
+            "Parent": "Own Child"
+        }
+    },
+    {
+        "permissionCode": "SAFETY_MANAGE_INCIDENTS",
+        "action": "Manage incidents / child protection cases",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "Oversight",
+            "Deputy Director": "Limited Delegated",
+            "Clerk": "Records Support",
+            "Media Coordinator": "Consent Check",
+            "Safe Church / AVG Officer": "Full",
+            "Parent": "Own Consent Only"
+        }
+    },
+    {
+        "permissionCode": "SAFETY_MANAGE_BACKGROUND_CHECKS",
+        "action": "Manage background checks",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "View",
+            "Deputy Director": "View",
+            "Clerk": "Records Support",
+            "Safe Church / AVG Officer": "Full"
+        }
+    },
+    {
+        "permissionCode": "SAFETY_MANAGE_GDPR_REQUESTS",
+        "action": "Manage GDPR / AVG requests",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "Oversight",
+            "Deputy Director": "Limited Delegated",
+            "Clerk": "Records Support",
+            "Safe Church / AVG Officer": "Full",
+            "Parent": "Own Data Request",
+            "Pathfinder": "Own Data Request",
+            "Adventurer": "Own Data Request"
+        }
+    },
+    {
+        "permissionCode": "COMMUNICATION_CREATE_ANNOUNCEMENTS",
+        "action": "Create announcements",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "Full",
+            "Deputy Director": "Full",
+            "Clerk": "Admin Notices",
+            "Treasurer": "Payment Notices",
+            "Counselor": "Unit/Class Notices",
+            "Instructor": "Class Notices",
+            "Drill Instructor": "Drill Notices",
+            "Assistant Drill Instructor": "Drill Notices",
+            "Logistics Coordinator": "Logistics Notices",
+            "Media Coordinator": "Media/News Notices",
+            "Safe Church / AVG Officer": "Safety Notices"
+        }
+    },
+    {
+        "permissionCode": "COMMUNICATION_CHAT_MESSAGES",
+        "action": "Chat / messages",
+        "accessByRole": {
+            "Platform Admin": "Monitor",
+            "Director": "Monitor",
+            "Deputy Director": "Monitor",
+            "Clerk": "Admin Comms",
+            "Treasurer": "Finance Comms",
+            "Counselor": "Own Unit",
+            "Instructor": "Assigned Groups",
+            "Drill Instructor": "Drill Groups",
+            "Assistant Drill Instructor": "Drill Groups",
+            "Logistics Coordinator": "Event Logistics",
+            "Media Coordinator": "Media Coordination",
+            "Safe Church / AVG Officer": "Safety Cases Only",
+            "Parent": "Child-Related",
+            "Pathfinder": "Monitored",
+            "Adventurer": "Restricted"
+        }
+    },
+    {
+        "permissionCode": "COMMUNICATION_MONITOR_CHATS",
+        "action": "Monitor chats",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "Full",
+            "Deputy Director": "Full",
+            "Counselor": "Own Unit",
+            "Instructor": "Assigned Groups",
+            "Drill Instructor": "Drill Groups",
+            "Assistant Drill Instructor": "Drill Groups",
+            "Safe Church / AVG Officer": "Safety Cases"
+        }
+    },
+    {
+        "permissionCode": "REPORTS_EXPORT_MEMBERSHIP",
+        "action": "Export membership reports",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "Full",
+            "Deputy Director": "Full",
+            "Clerk": "Full",
+            "Counselor": "Unit Reports",
+            "Instructor": "Teaching Reports",
+            "Safe Church / AVG Officer": "Compliance Reports"
+        }
+    },
+    {
+        "permissionCode": "REPORTS_EXPORT_ATTENDANCE",
+        "action": "Export attendance reports",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "Full",
+            "Deputy Director": "Full",
+            "Clerk": "Full",
+            "Counselor": "Unit Reports",
+            "Instructor": "Teaching Reports",
+            "Drill Instructor": "Drill Reports",
+            "Assistant Drill Instructor": "Drill Reports",
+            "Logistics Coordinator": "Logistics Reports",
+            "Safe Church / AVG Officer": "Compliance Reports"
+        }
+    },
+    {
+        "permissionCode": "REPORTS_EXPORT_CURRICULUM",
+        "action": "Export curriculum reports",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "Full",
+            "Deputy Director": "Full",
+            "Clerk": "Records Only",
+            "Counselor": "Unit Reports",
+            "Instructor": "Teaching Reports"
+        }
+    },
+    {
+        "permissionCode": "AUDIT_VIEW_LOGS",
+        "action": "View audit logs",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "Club-Level",
+            "Deputy Director": "Limited",
+            "Clerk": "Own Actions",
+            "Treasurer": "Own Finance Actions",
+            "Counselor": "Own Actions",
+            "Instructor": "Own Actions",
+            "Drill Instructor": "Own Actions",
+            "Assistant Drill Instructor": "Own Actions",
+            "Logistics Coordinator": "Own Actions",
+            "Media Coordinator": "Own Actions",
+            "Safe Church / AVG Officer": "Safety/Compliance Logs"
+        }
+    },
+    {
+        "permissionCode": "AUDIT_VIEW_LOGIN_LOGS",
+        "action": "View login logs",
+        "accessByRole": {
+            "Platform Admin": "Full",
+            "Director": "Club-Level",
+            "Deputy Director": "Limited",
+            "Safe Church / AVG Officer": "Safety Relevant"
+        }
+    }
+]
