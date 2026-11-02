@@ -240,6 +240,8 @@ model RolePermission {
   permissionId String     @map("permission_id") @db.Uuid
   permission   Permission @relation(fields: [permissionId], references: [id])
 
+  accessScope String @default("UNASSIGNED") @map("access_scope")
+
   createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
 
   @@unique([roleId, permissionId])
