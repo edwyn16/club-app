@@ -21,3 +21,14 @@ export const registrationRateLimiter = rateLimit({
         message: "Too many registration attempts, please try again after 1 hour.",
     },
 });
+
+export const resendVerificationRateLimiter = rateLimit({
+    windowMs: 60 * 60 * 1000, // 1 hour
+    limit: 3, // Limit each IP to 3 email verification requests per `window` (here, per 1 hour)
+    standardHeaders: "draft-8", // Return rate limit info in the `RateLimit-*` headers
+    legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+    message: {
+        status: "error",
+        message: "Too many verification attempts, please try again after 1 hour.",
+    },
+});
