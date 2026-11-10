@@ -7,6 +7,9 @@ import { loginSchema, registerSchema, } from "../validators/auth.validator.js";
 import { createSession, revokeSession } from "../services/session.service.js";
 import { clearSessionCookie, setSessionCookie, SESSION_COOKIE_NAME } from "../utils/session-cookie.js";
 
+import { verifyEmailToken, EmailVerificationError } from "../services/email-verification.service.js";
+import { resendEmailVerification } from "../services/email-verification.service.js";
+
 const handleAuthError = (error: unknown, res: Response): void =>{
     if (error instanceof ZodError) {
         res.status(400).json({
@@ -43,7 +46,7 @@ export const registerController = async (req: Request, res: Response): Promise<v
 
         res.status(201).json({
             status: "success",
-            message: "Account created successfully.",
+            message: "Account created successfully. Please check your email to verify your account.",
             data: { user },
         });
     } catch (error) {
@@ -92,6 +95,61 @@ export const logoutController = async (req: Request, res: Response): Promise<voi
         res.status(200).json({
             status: "success",
             message: "Logout successful.",
+        });
+    } catch (error) {
+        handleAuthError(error, res);
+    }
+}
+
+export const verifyEmailController = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const token = req.body?.token;
+
+        if (typeof token !== 'string' || !/^[a-f0-9]{64}$/.test(token)) {
+            res.status(400).json({
+                status: "error",
+                message: "Invalid verification token.",
+            });
+            return;
+        }
+
+        const verification = await verifyEmailToken(token);
+
+        res.status(200).json({
+            status: "success",
+            message: "Email verified successfully.",
+            data: { emailVerifiedAt: verification.emailVerifiedAt, },
+        });
+    } catch (error) {
+        if (error instanceof EmailVerificationError) {
+            res.status(error.statusCode).json({
+                status: "error",
+                message: error.message,
+            });
+            return;
+        }
+
+        handleAuthError(error, res);
+    }
+};
+
+export const resendVerificationEmailController = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const email = req.body?.email;
+
+        if(typeof email !== 'string' || email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            res.status(400).json({
+                status: "error",
+                message: "Enter a valid email address.",
+            });
+            return;
+        }
+
+        await resendEmailVerification(email);
+
+        res.status(200).json({
+            status: "success",
+            message: "If an eligible account exists, a verification email has been sent.",
         });
     } catch (error) {
         handleAuthError(error, res);
