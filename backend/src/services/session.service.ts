@@ -39,12 +39,13 @@ export const validateSession = async (token: string) => {
                     lastName: true,
                     isActive: true,
                     deletedAt: true,
+                    emailVerifiedAt: true,
                 },
             },
         },
     });
 
-    if (!session || session.revokedAt !== null || session.expiresAt <= new Date() || !session.user.isActive || session.user.deletedAt !== null) {
+    if (!session || session.revokedAt !== null || session.expiresAt <= new Date() || !session.user.isActive || session.user.deletedAt !== null || session.user.emailVerifiedAt === null) {
         return null;
     }
 
