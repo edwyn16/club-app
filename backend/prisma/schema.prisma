@@ -182,6 +182,7 @@ model User {
   platformRoles UserPlatformRole[]
   staffProfiles StaffProfile[]
   authSessions  AuthSession[]
+  emailVerificationTokens   EmailVerificationToken[]
 
   @@map("users")
 }
@@ -322,4 +323,22 @@ model AuthSession {
   @@index([userId])
   @@index([expiresAt])
   @@map("auth_sessions")
+}
+
+model EmailVerificationToken {
+  id String @id @default(uuid()) @db.Uuid
+
+  userId String @map("user_id") @db.Uuid
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  tokenHash String @unique @map("token_hash")
+
+  expiresAt DateTime  @map("expires_at") @db.Timestamptz(3)
+  usedAt    DateTime? @map("used_at") @db.Timestamptz(3)
+
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("email_verification_tokens")
 }
