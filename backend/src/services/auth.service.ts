@@ -1,5 +1,9 @@
 import { prisma } from "../database/prisma.js";
 import { hashPassword, verifyPassword } from "../utils/password.js";
+import { env } from "../config/env.js";
+import { createEmailVerificationToken } from "./email-verification.service.js";
+import { sendEmail } from "./email.service.js";
+import { createVerificationEmail } from "../templates/verification-email.template.js";
 
 export interface RegisterUserInput {
     email: string;
@@ -44,8 +48,10 @@ export const registerUser = async (input: RegisterUserInput) => {
 
     const passwordHash = await hashPassword(input.password);
 
+    let user;
+
     try {
-        return await prisma.user.create({
+        user = await prisma.user.create({
             data: {
                 email,
                 passwordHash,
@@ -65,6 +71,39 @@ export const registerUser = async (input: RegisterUserInput) => {
         }
         throw error;
     }
+
+    const { token } = await createEmailVerificationToken(user.id);
+
+    const verificationUrl = new URL("/verify-email", env.FRONTEND_URL,);
+
+    verificationUrl.searchParams.set("token", token);
+
+    const verificationEmail = createVerificationEmail({
+        firstName: user.firstName,
+        verificationUrl: verificationUrl.toString(),
+    });
+
+    try {
+        await sendEmail({
+            to: user.email,
+            subject: "Verify your email address",
+            html: verificationEmail.html,
+            text: verificationEmail.text,
+        });
+    } catch (error) {
+        // Preserve the account if email delivery fails.
+        // A resend-verification endpoint will provide recovery.
+        console.error(
+            "Regsitration verification email delivery failed:",
+            error,
+        );
+
+        throw new AuthServiceError(
+            "Your account was created, but the verification email coluld not be sent. Please request a new verification email.",
+            503,
+        );
+    }
+    return user;
 }
 
 export const authenticateUser = async (input: LoginUserInput) => {
@@ -82,6 +121,13 @@ export const authenticateUser = async (input: LoginUserInput) => {
 
     if (!passwordValid) {
         throw new AuthServiceError("Invalid email or password.", 401,);
+    }
+
+    if (user.emailVerifiedAt === null) {
+        throw new AuthServiceError(
+            "Please verify your email address before logging in.",
+            403
+        );
     }
 
     const { passwordHash: _passwordHash, ...safeUser } = user;
