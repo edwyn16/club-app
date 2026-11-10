@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { loginController, logoutController } from "../controllers/auth.controller.js";
+import { loginController, logoutController, verifyEmailController, registerController, resendVerificationEmailController } from "../controllers/auth.controller.js";
 import { requireAuthentication, type AuthenticatedRequest  } from "../middlewares/auth.middleware.js";
-import { loginRateLimiter } from "../middlewares/auth-rate-limit.middleware.js";
+import { loginRateLimiter, registrationRateLimiter, resendVerificationRateLimiter } from "../middlewares/auth-rate-limit.middleware.js";
 import { ensureCsrfContext, generateCsrfToken, doubleCsrfProtection } from "../middlewares/csrf.middleware.js";
 import { requireTrustedOrigin } from "../middlewares/trusted-origin.middleware.js";
 
@@ -18,12 +18,9 @@ router.get("/csrf-token", ensureCsrfContext, (req, res) => {
     });
 });
 
-router.post("/register", (_req, res) => {
-    res.status(403).json({
-        status: "error",
-        message: "Public registration is not available.",
-    });
-});
+router.post("/register", registrationRateLimiter, doubleCsrfProtection, registerController);
+router.post("/verify-email", doubleCsrfProtection, verifyEmailController);
+router.post("/resend-verification", resendVerificationRateLimiter, doubleCsrfProtection, resendVerificationEmailController);
 router.post("/login", loginRateLimiter, doubleCsrfProtection, loginController);
 router.post("/logout", requireAuthentication, doubleCsrfProtection, logoutController);
 
